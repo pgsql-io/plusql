@@ -1,3 +1,4 @@
 # plusql2
 
-Similar to Oracle&reg; SQL*Plus&reg;, but, works for Postgres, MySQL &amp; SQL Server also.
+Similar to Oracle&reg; SQL*Plus&reg;. But... it works for PostgreSQL, MySQL &amp; MS SQL Server also.
+
