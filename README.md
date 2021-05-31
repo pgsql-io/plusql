@@ -1,2 +1,3 @@
 # plusql2
-Similar to Oracle SQL*Plus, but, works for Postgres, MySQL &amp; SQL Server also
+
+Similar to Oracle's SQL*Plus(tm), but, works for Postgres, MySQL &amp; SQL Server also.
