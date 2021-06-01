@@ -1,5 +1,7 @@
 import sqlalchemy
 
+from sqlalchemy import create_engine
+
 import sys, os
 
 
@@ -36,8 +38,17 @@ def mainline():
 
 def exec_sql(p_stmt):
   print(p_stmt)
+  print("")
+  try:
+    con1.execute(p_stmt)
+  except Exception as e:
+    print(e)
+    print("")
 
 
 ####################################
+eng1 = create_engine('sqlite:///:memory:')
+con1 = eng1.connect()
 mainline()
+
 sys.exit(0)

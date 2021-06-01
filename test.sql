@@ -1,6 +1,8 @@
 
 -- a comment
-  -- also a comment
+-- also a comment
+
+DROP TABLE IF EXISTS t1;
 
 DROP TABLE t1;
 
