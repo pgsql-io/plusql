@@ -46,13 +46,36 @@ def load_sql_file(p_f_sql):
 
 def exec_sql(p_stmt):
   print(p_stmt)
+
+  ## figure out what to do by looking at the first token
+  sp_stmt = p_stmt.split()
+  for token in sp_stmt:
+    l_token = token.lower()
+    if l_token == "select":
+      rc = execute_sql_select(p_stmt)
+    else:
+      rc = execute_sql(p_stmt)
+    break
+
+  print("")
+  return(rc)
+
+
+def execute_sql_select(p_stmt):
   try:
     con1.execute(p_stmt)
   except Exception as e:
     print_sql_exception(e)
     return(False)
+  return(True)
 
-  print("")
+
+def execute_sql(p_stmt):
+  try:
+    con1.execute(p_stmt)
+  except Exception as e:
+    print_sql_exception(e)
+    return(False)
   return(True)
 
 
