@@ -1,3 +1,7 @@
+############################################################
+#  Copyright(c) 2021  Denis Lussier.  All rights reserved. #
+############################################################
+
 import sqlalchemy
 
 from sqlalchemy import create_engine
