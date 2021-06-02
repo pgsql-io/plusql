@@ -8,6 +8,8 @@ from sqlalchemy import create_engine
 
 import sys, os
 
+PREFIX="SQL> "
+
 
 def main_loop():
   s_sql = load_sql_file(f_sql)
@@ -17,13 +19,10 @@ def main_loop():
 
     ## skip some lines
     if line == "":
-      ##print(line)
       continue
     if line.startswith("--"):
-      ##print(line)
       continue
 
-    ## sql statements are terminated by a semicolon
     if line.endswith(";"):
       stmt = stmt + line
       exec_sql(stmt)
@@ -45,7 +44,7 @@ def load_sql_file(p_f_sql):
 
 
 def exec_sql(p_stmt):
-  print(p_stmt)
+  print_sql_stmt(p_stmt)
 
   ## figure out what to do by looking at the first token
   sp_stmt = p_stmt.split()
@@ -57,16 +56,23 @@ def exec_sql(p_stmt):
       rc = execute_sql(p_stmt)
     break
 
-  print("")
+  print_empty_line()
   return(rc)
+
+
+def print_sql_stmt(p_sql):
+  print(PREFIX + str(p_sql))
 
 
 def execute_sql_select(p_stmt):
   try:
-    con1.execute(p_stmt)
+    result = con1.execute(p_stmt)
   except Exception as e:
     print_sql_exception(e)
     return(False)
+
+  print_rows(result.fetchall())
+
   return(True)
 
 
@@ -77,6 +83,17 @@ def execute_sql(p_stmt):
     print_sql_exception(e)
     return(False)
   return(True)
+
+
+def print_rows(p_rows):
+  print(PREFIX + str(p_rows))
+  print_empty_line()
+
+
+def print_empty_line():
+  #print(PREFIX)
+  print("")
+  
 
 
 def print_sql_exception(e):

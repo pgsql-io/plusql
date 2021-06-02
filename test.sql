@@ -10,3 +10,5 @@ CREATE TABLE t1 (
   c1 text
 );
 
+SELECT * FROM t1;
+
