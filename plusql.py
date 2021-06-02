@@ -46,10 +46,21 @@ def load_sql_file(p_f_sql):
 
 def exec_sql(p_stmt):
   print(p_stmt)
-  print("")
   try:
     con1.execute(p_stmt)
   except Exception as e:
+    print_sql_exception(e)
+    return(False)
+
+  print("")
+  return(True)
+
+
+def print_sql_exception(e):
+    ##for line in e.response['Error']['Message']:
+    ##  print(line)
+    ##(Background on this error
+
     print(e)
     print("")
 
