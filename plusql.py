@@ -26,8 +26,6 @@ def main_loop():
 
     if line.endswith(";"):
       stmt = stmt + line
-      if stmt_line_num < line_num:
-        stmt_line_num = line_num
       exec_sql(stmt, stmt_line_num)
       stmt = ""
       stmt_line_num = line_num + 1

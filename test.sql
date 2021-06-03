@@ -13,7 +13,8 @@ CREATE TABLE t1 (
 
 SELECT * FROM t1;
 
-INSERT INTO t1 VALUES ('Denis', 1);
+INSERT INTO t1 
+  VALUES ('Denis', 1);
 INSERT INTO t1 VALUES ('Gary',  2);
 INSERT INTO t1 VALUES ('Chris', 3);
 
