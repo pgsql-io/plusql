@@ -1,6 +1,5 @@
 
 -- a comment
--- also a comment
 
 DROP TABLE IF EXISTS t1;
 
@@ -19,6 +18,3 @@ INSERT INTO t1 VALUES ('Gary',  2);
 INSERT INTO t1 VALUES ('Chris', 3);
 
 SELECT * FROM t1;
-
-
-
