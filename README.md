@@ -2,9 +2,9 @@
 
 ![plusql](https://user-images.githubusercontent.com/1664798/120719305-0ac9c300-c498-11eb-9e1e-f8175074a99b.png) 
 
-A command line SQL interface that's similar to Oracle&reg; SQL*Plus&reg;, but... it works for SQLite, PostgreSQL, MySQL &amp; MS SQL Server also.
+A command line SQL interface that's similar to Oracle&reg;'s SQL*Plus&reg;, but... it also works as a CLI for SQLite&reg;, PostgreSQL&reg;, MySQL&reg; &amp; Microsoft&reg;'s SQL Server&reg; also.  
 
-It's written in Python3 and leverages SQL Alchemy for RDBMS indepenance.   This is still a pre-alpha hobby project.  In these early days I'm mostly just testing against a SQLite in-memory database whilst building the basic plumbing.
+PluSQL is written in Python 3 and leverages SQL Alchemy for RDBMS independance.   This is still a pre-alpha hobby project for me.  In these early days I'm mostly just testing against a SQLite in-memory database whilst building the basic plumbing.
 
 --Luss
 
