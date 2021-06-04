@@ -5,7 +5,6 @@
 from sqlalchemy import create_engine
 
 import sys
-import os
 
 PROMPT = "SQL> "
 
@@ -18,7 +17,6 @@ def main_loop():
     for line in s_sql:
         line_num = line_num + 1
         if line == "" or line.startswith("--"):
-            # print(f"[{line_num}] {line}")
             print(f"{line}")
             continue
         if line.endswith(";"):
@@ -44,8 +42,9 @@ def load_sql_file(p_f_sql):
 def exec_sql(p_stmt, p_line_num):
     print_sql_stmt(p_stmt, p_line_num)
 
-    ## figure out what to do by looking at the first token
+    # figure out what to do by looking at the first token
     sp_stmt = p_stmt.split()
+    rc = 0
     for token in sp_stmt:
         l_token = token.lower()
         if l_token == "select":
@@ -59,7 +58,6 @@ def exec_sql(p_stmt, p_line_num):
 
 
 def print_sql_stmt(p_sql, p_line_num):
-    # print(f"[{p_line_num}] {PROMPT} {p_sql.rstrip()}")
     print(f"{PROMPT} {p_sql.rstrip()}")
 
 
@@ -110,9 +108,7 @@ def print_sql_exception(e, p_line_num=0):
             print(line)
 
 
-#############################################
-## MAINLINE                                ##
-#############################################
+# MAINLINE #####################################################
 
 if len(sys.argv) < 2:
     print("Invalid parameters")
