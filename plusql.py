@@ -8,8 +8,7 @@ import sys
 
 PROMPT = "SQL> "
 
-
-commands = ['@', '@@', '--', '/*', '*/' ]
+commands = ['@', '@@', 'set' ]
 
 
 def main_loop():
@@ -18,16 +17,17 @@ def main_loop():
     stmt = ""
     line_num = 0
     is_multi_line_comment = False
+    is_multi_line_stmt = False
 
     for line in s_sql:
         line_num = line_num + 1
 
-        ## handle single line comments
+        ## empty lines & single line comments
         if line == "" or line.startswith("--"):
             print(f"{line}")
             continue
 
-        ## handle multi-line comments
+        ## multi-line comments
         if line.startswith('/*'):
             if line.endswith('*/'):
                 print(f"{line}")
@@ -41,13 +41,28 @@ def main_loop():
                 is_multi_line_comment = False
             continue
 
-
         if line.endswith(";"):
             stmt = stmt + line
             exec_sql(stmt, line_num)
             stmt = ""
-        else:
+            is_multi_line_stmt = False
+            continue
+        if is_multi_line_stmt:
             stmt = stmt + line + "\n"
+            continue
+
+        tokens = line.split()
+        if tokens[0].lower() in commands:
+            process_command(line)
+            continue
+
+        # starting a multi-line statement
+        stmt = stmt + line + "\n"
+        is_multi_line_stmt = True
+
+
+def process_command(p_line):
+    print(f"COMMAND: {p_line}")
 
 
 def load_sql_file(p_f_sql):

@@ -7,6 +7,9 @@
  * multi-line comment
  */
 
+set termout off
+sEt termout on
+
 
 DROP TABLE IF EXISTS t1;
 
