@@ -1,6 +1,13 @@
 
 -- a comment
 
+/* single line comment */
+
+/*
+ * multi-line comment
+ */
+
+
 DROP TABLE IF EXISTS t1;
 
 DROP TABLE t1;

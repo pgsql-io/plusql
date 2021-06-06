@@ -9,16 +9,39 @@ import sys
 PROMPT = "SQL> "
 
 
+commands = ['@', '@@', '--', '/*', '*/' ]
+
+
 def main_loop():
     s_sql = load_sql_file(f_sql)
 
     stmt = ""
     line_num = 0
+    is_multi_line_comment = False
+
     for line in s_sql:
         line_num = line_num + 1
+
+        ## handle single line comments
         if line == "" or line.startswith("--"):
             print(f"{line}")
             continue
+
+        ## handle multi-line comments
+        if line.startswith('/*'):
+            if line.endswith('*/'):
+                print(f"{line}")
+                continue
+            is_multi_line_comment = True
+            print(f"{line}")
+            continue
+        if is_multi_line_comment:
+            print(f"{line}")
+            if line.endswith('*/'):
+                is_multi_line_comment = False
+            continue
+
+
         if line.endswith(";"):
             stmt = stmt + line
             exec_sql(stmt, line_num)
