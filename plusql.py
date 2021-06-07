@@ -70,8 +70,212 @@ def main_loop():
         is_multi_line_stmt = True
 
 
-def process_command(p_tokens, p_line):
-    print(f"COMMAND: {p_line}")
+def process_command(tkns, ln):
+    print(f"COMMAND: {ln}")
+    if tkns[0] in ('@', '@@'): c_at(tkns, ln)
+    elif tkns[0] in ('acc', 'accept'): c_accept(tkns, ln)
+    elif tkns[0] in ('bre', 'break'): c_break(tkns, ln)
+    elif tkns[0] == 'btitle': c_btitle(tkns, ln)
+    elif tkns[0] in ('cl', 'clear'): c_clear(tkns, ln)
+    elif tkns[0] in ('col', 'column'): c_column(tkns, ln)
+    elif tkns[0] in ('comp', 'compute'): c_compute(tkns, ln)
+    elif tkns[0] in ('conn', 'connect'): c_connect(tkns, ln)
+    elif tkns[0] == 'copy': c_copy(tkns, ln)
+    elif tkns[0] in ('def', 'define'): c_define(tkns, ln)
+    elif tkns[0] in ('desc', 'describe'): c_describe(tkns, ln)
+    elif tkns[0] in ('disc', 'disconnect'): c_disconnect(tkns, ln)
+    elif tkns[0] in ('exec', 'execute'): c_execute(tkns, ln)
+    elif tkns[0] == 'exit': c_exit(tkns, ln)
+    elif tkns[0] == 'get': c_get(tkns, ln)
+    elif tkns[0] == 'help': c_help(tkns, ln)
+    elif tkns[0] in ('ho', 'host'): c_host(tkns, ln)
+    elif tkns[0] in ('l', 'list'): c_list(tkns, ln)
+    elif tkns[0] in ('passw', 'password'): c_password(tkns, ln)
+    elif tkns[0] in ('pau', 'pause'): c_pause(tkns, ln)
+    elif tkns[0] in ('pri', 'print'): c_print(tkns, ln)
+    elif tkns[0] in ('pro', 'prompt'): c_prompt(tkns, ln)
+    elif tkns[0] == 'quit': c_quit(tkns, ln)
+    elif tkns[0] == 'recover': c_recover(tkns, ln)
+    elif tkns[0] in ('rem', 'remark'): c_remark(tkns, ln)
+    elif tkns[0] in ('repf', 'repfooter'): c_repfooter(tkns, ln)
+    elif tkns[0] in ('reph', 'repheader'): c_repheader(tkns, ln)
+    elif tkns[0] in ('r', 'run'): c_run(tkns, ln)
+    elif tkns[0] in ('sav', 'save'): c_save(tkns, ln)
+    elif tkns[0] == 'set': c_set(tkns, ln)
+    elif tkns[0] in ('sho', 'show'): c_show(tkns, ln)
+    elif tkns[0] == 'shutdown': c_shutdown(tkns, ln)
+    elif tkns[0] in ('sp', 'spool'): c_spool(tkns, ln)
+    elif tkns[0] in ('sta', 'start'): c_start(tkns, ln)
+    elif tkns[0] == 'startup': c_startup(tkns, ln)
+    elif tkns[0] == 'store': c_store(tkns, ln)
+    elif tkns[0] in ('timi', 'timing'): c_timing(tkns, ln)
+    elif tkns[0] == 'ttitle': c_ttile(tkns, ln)
+    elif tkns[0] in ('undef', 'undefine'): c_undefine(tkns, ln)
+    elif tkns[0] in ('var', 'variable'): c_variable(tkns, ln)
+    elif tkns[0] == 'whenever': c_whenever(tkns, ln)
+
+def c_at(tkns, ln):
+  pass
+
+
+def c_accept(tkns, ln):
+  pass
+
+
+def c_break(tkns, ln):
+  pass
+
+
+def c_btitle(tkns, ln):
+  pass
+
+
+def c_clear(tkns, ln):
+  pass
+
+
+def c_column(tkns, ln):
+  pass
+
+
+def c_compute(tkns, ln):
+  pass
+
+
+def c_connect(tkns, ln):
+  pass
+
+
+def c_copy(tkns, ln):
+  pass
+
+
+def c_define(tkns, ln):
+  pass
+
+
+def c_describe(tkns, ln):
+  pass
+
+
+def c_disconnect(tkns, ln):
+  pass
+
+
+def c_execute(tkns, ln):
+  pass
+
+
+def c_exit(tkns, ln):
+  pass
+
+
+def c_get(tkns, ln):
+  pass
+
+
+def c_help(tkns, ln):
+  pass
+
+
+def c_host(tkns, ln):
+  pass
+
+
+def c_list(tkns, ln):
+  pass
+
+
+def c_password(tkns, ln):
+  pass
+
+
+def c_pause(tkns, ln):
+  pass
+
+
+def c_print(tkns, ln):
+  pass
+
+
+def c_prompt(tkns, ln):
+  pass
+
+
+def c_quit(tkns, ln):
+  pass
+
+
+def c_recover(tkns, ln):
+  pass
+
+
+def c_remark(tkns, ln):
+  pass
+
+
+def c_repfooter(tkns, ln):
+  pass
+
+
+def c_repheader(tkns, ln):
+  pass
+
+
+def c_run(tkns, ln):
+  pass
+
+
+def c_save(tkns, ln):
+  pass
+
+
+def c_set(tkns, ln):
+  pass
+
+
+def c_show(tkns, ln):
+  pass
+
+
+def c_shutdown(tkns, ln):
+  pass
+
+
+def c_spool(tkns, ln):
+  pass
+
+
+def c_start(tkns, ln):
+  pass
+
+
+def c_startup(tkns, ln):
+  pass
+
+
+def c_store(tkns, ln):
+  pass
+
+
+def c_timing(tkns, ln):
+  pass
+
+
+def c_ttitle(tkns, ln):
+  pass
+
+
+def c_undefine(tkns, ln):
+  pass
+
+
+def c_variable(tkns, ln):
+  pass
+
+
+def c_whenever(tkns, ln):
+  pass
 
 
 def load_sql_file(p_f_sql):
