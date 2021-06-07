@@ -8,7 +8,12 @@ import sys
 
 PROMPT = "SQL> "
 
-commands = ['@', '@@', 'set' ]
+commands = ['@', '@@', 'accept', 'break', 'btitle', 'clear', 'column',
+            'compute', 'connect', 'copy', 'define', 'describe', 'disconnect',
+            'exit', 'get', 'help', 'host', 'list', 'password', 'pause', 'print',
+            'prompt', 'quit', 'recover', 'remark', 'repfooter', 'repheader',
+            'run', 'save', 'set', 'show', 'shutdown', 'spool', 'start', 'startup',
+            'timing', 'ttitle', 'undefine', 'variable', 'whenever']
 
 
 def main_loop():
