@@ -8,12 +8,15 @@ import sys
 
 PROMPT = "SQL> "
 
-commands = ['@', '@@', 'accept', 'break', 'btitle', 'clear', 'column',
-            'compute', 'connect', 'copy', 'define', 'describe', 'disconnect',
-            'exit', 'get', 'help', 'host', 'list', 'password', 'pause', 'print',
-            'prompt', 'quit', 'recover', 'remark', 'repfooter', 'repheader',
-            'run', 'save', 'set', 'show', 'shutdown', 'spool', 'start', 'startup',
-            'timing', 'ttitle', 'undefine', 'variable', 'whenever']
+commands = ['@', '@@', 'acc', 'accept', 'bre', 'break', 'btitle', 'cl', 'clear',
+            'col', 'column', 'comp', 'compute', 'conn', 'connect', 'copy',
+            'def', 'define', 'desc', 'describe', 'disc', 'disconnect',
+            'exec', 'execute', 'exit', 'get', 'help', 'ho', 'host', 'l', 'list',
+            'passw', 'password', 'pau', 'pause', 'pri', 'print', 'pro', 'prompt',
+            'quit', 'recover', 'rem', 'remark', 'repf', 'repfooter',
+            'reph', 'repheader', 'r', 'run', 'sav', 'save', 'set', 'sho', 'show',
+            'shutdown', 'sp', 'spool', 'sta', 'start', 'startup', 'store',
+            'timi', 'timing', 'ttitle', 'undef', 'undefine', 'var', 'variable', 'whenever']
 
 
 def main_loop():
@@ -56,9 +59,10 @@ def main_loop():
             stmt = stmt + line + "\n"
             continue
 
-        tokens = line.split()
-        if tokens[0].lower() in commands:
-            process_command(line)
+        l_line = line.lower()
+        tokens = l_line.split()
+        if tokens[0] in commands:
+            process_command(tokens, line)
             continue
 
         # starting a multi-line statement
@@ -66,7 +70,7 @@ def main_loop():
         is_multi_line_stmt = True
 
 
-def process_command(p_line):
+def process_command(p_tokens, p_line):
     print(f"COMMAND: {p_line}")
 
 
