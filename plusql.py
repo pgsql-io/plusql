@@ -4,6 +4,8 @@
 
 import sys
 
+import pg8000.native
+
 PROMPT = "SQL> "
 
 commands = ['@', '@@', 'acc', 'accept', 'bre', 'break', 'btitle', 'cl', 'clear',
@@ -357,6 +359,25 @@ def print_sql_exception(e, p_line_num=0):
             print(line)
 
 
+def connect(p_usr, p_pwd, p_host, p_port, p_db):
+  try:
+    con = pg8000.native.Connection(p_db, password=p_pwd)
+  except Exception as e:
+    con = None
+    print(e)
+
+  return con
+
+
+def message(p_msg, p_lvl=None):
+  if p_lvl == "debug":
+    msg = f"DEBUG: {p_msg}"
+  else:
+    msg = p_msg
+
+  print(msg)
+
+
 # MAINLINE #####################################################
 
 if len(sys.argv) < 2:
@@ -411,13 +432,14 @@ if port == "":
 if db == "":
   db = "postgres"
 
-print(f"DEBUG  f_sql: {f_sql}")
-print(f"DEBUG   User: {user}")
-print(f"DEBUG Passwd: {passwd}")
-print(f"DEBUG   Host: {host}")
-##print(f"DEBUG PortDB: {portdb}")
-print(f"DEBUG   Port: {port}")
-print(f"DEBUG     DB: {db}")
+message(f"f_sql: {f_sql}", "debug")
+message(f" User: {user}", "debug")
+message(f" Host: {host}", "debug")
+message(f" Port: {port}", "debug")
+message(f"   DB: {db}", "debug")
+
+g_con = connect(user, passwd, host, port, db)
+message(f" Conn: {g_con}", "debug")
 
 #eng1 = create_engine('sqlite:///:memory:')
 #con1 = eng1.connect()
