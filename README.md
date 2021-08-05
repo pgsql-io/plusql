@@ -1,4 +1,4 @@
-# plusql2
+# plusql
 
 ![plusql](plusql.png) 
 
