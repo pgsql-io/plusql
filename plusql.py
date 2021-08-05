@@ -2,8 +2,6 @@
 #  Copyright(c) 2021  Denis Lussier.  All rights reserved. #
 ############################################################
 
-from sqlalchemy import create_engine
-
 import sys
 
 PROMPT = "SQL> "
@@ -366,9 +364,63 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 f_sql = sys.argv[1]
+user = ""
+passwd = ""
+host = ""
+portdb = ""
+port = ""
+db = ""
 
-eng1 = create_engine('sqlite:///:memory:')
-con1 = eng1.connect()
-main_loop()
+if len(sys.argv) == 2:
+  arg = sys.argv[1]
+  if "@" in arg:
+    f_sql = ""
+    arg_s = arg.split("@")
+    userpass = arg_s[0]
+    conn = arg_s[1]
+
+    if "/" in userpass:
+      up_s = userpass.split("/")
+      user = up_s[0]
+      passwd = up_s[1]
+    else:
+      user = userpass
+      passwd = ""
+
+    # @host:port/database
+    if ((not ":" in conn) and (not "/" in conn)):
+      host = conn
+    elif ":" in conn:
+      cn_s = conn.split(":")
+      host = cn_s[0]
+      portdb = cn_s[1]
+      if "/" in portdb:
+        pdb_s = portdb.split("/")
+        port = pdb_s[0]
+        db = pdb_s[1]
+      else:
+        db = portdb
+
+## set defaults for variables not specified
+if host == "":
+  host = "localhost"
+
+if port == "":
+  port = "5432"
+
+if db == "":
+  db = "postgres"
+
+print(f"DEBUG  f_sql: {f_sql}")
+print(f"DEBUG   User: {user}")
+print(f"DEBUG Passwd: {passwd}")
+print(f"DEBUG   Host: {host}")
+##print(f"DEBUG PortDB: {portdb}")
+print(f"DEBUG   Port: {port}")
+print(f"DEBUG     DB: {db}")
+
+#eng1 = create_engine('sqlite:///:memory:')
+#con1 = eng1.connect()
+#main_loop()
 
 sys.exit(0)

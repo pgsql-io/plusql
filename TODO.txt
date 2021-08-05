@@ -1,0 +1,8 @@
+1. support command line of:  user/password@host:port/database
+    - default for password is taken from ~/.pgaccess if not set
+    - default database is "postgres" if not specified
+    - default port is 5432 if not set
+
+
+
+
