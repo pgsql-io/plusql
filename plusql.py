@@ -364,7 +364,7 @@ def connect(p_usr, p_pwd, p_host, p_port, p_db):
     con = pg8000.native.Connection(p_db, password=p_pwd)
   except Exception as e:
     con = None
-    print(e)
+    message(e, "error")
 
   return con
 
@@ -372,6 +372,8 @@ def connect(p_usr, p_pwd, p_host, p_port, p_db):
 def message(p_msg, p_lvl=None):
   if p_lvl == "debug":
     msg = f"DEBUG: {p_msg}"
+  elif p_lvl == "error":
+    msg = f"\nERROR: {p_msg}"
   else:
     msg = p_msg
 
@@ -392,14 +394,17 @@ portdb = ""
 port = ""
 db = ""
 
-if len(sys.argv) == 2:
+if len(sys.argv) > 1:
   arg = sys.argv[1]
+
+  # user/password@host:port/database
   if "@" in arg:
     f_sql = ""
     arg_s = arg.split("@")
     userpass = arg_s[0]
     conn = arg_s[1]
 
+    # user/password
     if "/" in userpass:
       up_s = userpass.split("/")
       user = up_s[0]
@@ -431,6 +436,11 @@ if port == "":
 
 if db == "":
   db = "postgres"
+
+if len(sys.argv) > 2:
+  f_name = sys.argv[2]
+  if f_name.startswith("@"):
+    f_sql = f_name[1:]
 
 message(f"f_sql: {f_sql}", "debug")
 message(f" User: {user}", "debug")
