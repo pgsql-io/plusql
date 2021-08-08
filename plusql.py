@@ -2,7 +2,7 @@
 #  Copyright(c) 2021  Denis Lussier.  All rights reserved. #
 ############################################################
 
-import sys
+import sys, json
 
 import pg8000.native
 
@@ -314,19 +314,20 @@ def print_sql_stmt(p_sql, p_line_num):
 
 def execute_sql_select(p_stmt, p_line_num):
     try:
-        result = con1.execute(p_stmt)
+        result = g_con.run(p_stmt)
     except Exception as e:
         print_sql_exception(e, p_line_num)
         return False
 
-    print_rows(result.fetchall())
+    for row in result:
+      print_row(row)
 
     return True
 
 
 def execute_sql(p_stmt, p_line_num):
     try:
-        con1.execute(p_stmt)
+        g_con.run(p_stmt)
     except Exception as e:
         print_sql_exception(e, p_line_num)
         return False
@@ -334,9 +335,9 @@ def execute_sql(p_stmt, p_line_num):
     return True
 
 
-def print_rows(p_rows):
-    if p_rows:
-        print(str(p_rows))
+def print_row(p_row):
+    if p_row:
+        print(str(p_row))
 
 
 def print_empty_line():
@@ -344,24 +345,13 @@ def print_empty_line():
 
 
 def print_sql_exception(e, p_line_num=0):
-    e_lines = str(e).split("\n")
-    e_line = 0
-    for line in e_lines:
-        if line.startswith("(Background on this error at"):
-            continue
-        if line.startswith("[SQL: "):
-            continue
-
-        e_line = e_line + 1
-        if e_line == 1 and p_line_num > 0:
-            print(f"[ERROR near line {p_line_num}] {line}")
-        else:
-            print(line)
+  print(e)
+  return
 
 
 def connect(p_usr, p_pwd, p_host, p_port, p_db):
   try:
-    con = pg8000.native.Connection(p_db, password=p_pwd)
+    con = pg8000.native.Connection(p_usr, database=p_db, password=p_pwd, host=p_host, port=p_port)
   except Exception as e:
     con = None
     message(e, "error")
@@ -449,10 +439,8 @@ message(f" Port: {port}", "debug")
 message(f"   DB: {db}", "debug")
 
 g_con = connect(user, passwd, host, port, db)
-message(f" Conn: {g_con}", "debug")
 
-#eng1 = create_engine('sqlite:///:memory:')
-#con1 = eng1.connect()
-#main_loop()
+if g_con:
+  main_loop()
 
 sys.exit(0)
